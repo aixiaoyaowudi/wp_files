@@ -107,3 +107,23 @@ pre .line-numbers-rows:before {
     transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
     z-index: 1;
 }
+button {
+    width: auto;
+    display: inline-block;
+    padding: .1rem 1.5rem;
+    cursor: pointer;
+    outline: 0;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: none;
+    border-radius: .3rem;
+    border: .1em solid rgba(0, 0, 0, .05);
+    background: #5ba4e5;
+    text-align: center;
+}
