@@ -53,16 +53,24 @@ function Tools() {
 
 const tools = new Tools;
 
-window.Mathjax = {
-	tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
-	TeX: {
-		equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
-		extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
-		Macros: {bm: "\\boldsymbol"}
+//window.Mathjax = {
+//	tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
+//	TeX: {
+//		equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
+//		extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
+//		Macros: {bm: "\\boldsymbol"}
+//	},
+//	'HTML-CSS': { linebreaks: { automatic: true } },
+//	SVG: { linebreaks: { automatic: true } }
+//}
+window.MathJax = {
+	tex: {
+		inlineMath: [['$', '$'], ['\\(', '\\)']]
 	},
-	'HTML-CSS': { linebreaks: { automatic: true } },
-	SVG: { linebreaks: { automatic: true } }
-}
+	svg: {
+		fontCache: 'global'
+	}
+};
 tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
 
 function main() {
