@@ -63,7 +63,7 @@ const tools = new Tools;
 //	'HTML-CSS': { linebreaks: { automatic: true } },
 //	SVG: { linebreaks: { automatic: true } }
 //}
-window.MathJax_config = {
+window.MathJax = {
 	tex: {
 		inlineMath: [['$', '$'], ['\\(', '\\)']]
 	},
@@ -71,7 +71,7 @@ window.MathJax_config = {
 		fontCache: 'global'
 	}
 };
-//tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
+tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
 
 function main() {
 	this.coding = function () {
@@ -188,11 +188,7 @@ function main() {
 		});
 	};
 	this.math = function() {
-		$.getScript('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js', function() {
-    		MathJax.Hub.Config(window.MathJax_config);
-    		let math = document.getElementsByClassName(window.xiaoyaowudi_config.content_class_name)[0];
-    		MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
-		});
+		MathJax.typeset();
 	}
 	this.main = function() {
 		this.coding();
