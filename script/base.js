@@ -162,6 +162,12 @@ function main() {
 					$('.clipboard[boxid='+ obj.attr('boxid') +']').addClass('hljs-comment');
 				});
 
+				$('code-box pre').mCustomScrollbar({
+					theme:"minimal-dark",
+					axis:"yx"
+				});
+				$('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
+
 				let pre_list = $('code-box pre');
 
 				$.each(pre_list, function (i) {
@@ -178,12 +184,6 @@ function main() {
 					pre.html(code.join('\n'));
 					pre.addClass('code-pre-line');
 				});
-
-				$('code-box pre').mCustomScrollbar({
-					theme:"minimal-dark",
-					axis:"yx"
-				});
-				// $('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
 			});
 		});
 	};
