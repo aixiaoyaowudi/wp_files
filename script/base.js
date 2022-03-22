@@ -93,6 +93,7 @@ function main() {
                         console.log(reg);
                         console.log(code_class);
                         let lan = code_class.match(reg);
+                        console.log(lan);
                         if (!!lan && lan.length > 0) {
                             pre.addClass(lan[1]);
                         }
