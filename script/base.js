@@ -90,6 +90,8 @@ function main() {
                     let code_class = pre_code.attr('class');
                     if (code_class) {
                         let reg = new RegExp('.*' + window.xiaoyaowudi_config.language_prefix + '-[a-z0-9]+.*');
+                        console.log(reg);
+                        console.log(code_class);
                         let lan = code_class.match(reg);
                         if (!!lan && lan.length > 0) {
                             pre.addClass(lan[1]);
