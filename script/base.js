@@ -183,7 +183,7 @@ function main() {
 					theme:"minimal-dark",
 					axis:"yx"
 				});
-				$('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
+				// $('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
 			});
 		});
 	};
@@ -233,3 +233,4 @@ function load() {
 }
 
 $(document).ready(load);
+$(document).on('pjax:complete', load);
