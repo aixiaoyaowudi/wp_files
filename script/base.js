@@ -63,7 +63,7 @@ const tools = new Tools;
 //	'HTML-CSS': { linebreaks: { automatic: true } },
 //	SVG: { linebreaks: { automatic: true } }
 //}
-window.MathJax = {
+window.MathJax_config = {
 	tex: {
 		inlineMath: [['$', '$'], ['\\(', '\\)']]
 	},
@@ -71,7 +71,7 @@ window.MathJax = {
 		fontCache: 'global'
 	}
 };
-tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
+//tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
 
 function main() {
 	this.coding = function () {
@@ -179,20 +179,28 @@ function main() {
 					pre.addClass('code-pre-line');
 				});
 
-				// $('code-box pre').mCustomScrollbar({
-				// 	theme:"minimal-dark",
-				// 	axis:"yx"
-				// });
-				// $('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
+				$('code-box pre').mCustomScrollbar({
+					theme:"minimal-dark",
+					axis:"yx"
+				});
+				$('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
 			});
 		});
 	};
+	this.math = function() {
+		$.getScript('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js', function() {
+    		MathJax.Hub.Config(window.MathJax_config);
+    		let math = document.getElementsByClassName(window.xiaoyaowudi_config.content_class_name)[0];
+    		MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+		});
+	}
 	this.main = function() {
 		this.coding();
+		this.math();
 	}
 }
 
-$(document).ready(function(){
+function load() {
 	$.getScript(tools.get_file('lib/require/' + window.xiaoyaowudi_config.require_verion) + '/require.min.js', function () {
 		require.config({
 			map: {
@@ -226,4 +234,6 @@ $(document).ready(function(){
 			(new main).main();
 		});
 	});
-});
+}
+
+$(document).ready(load);
