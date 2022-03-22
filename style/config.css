@@ -30,7 +30,7 @@ pre .line-numbers-rows {
     counter-increment: itemcounter;
     position: absolute;
     left: 1px;
-    width: 34px;
+    width: 30px;
     text-align: center;
     color: #999;
 }
@@ -97,7 +97,7 @@ pre .line-numbers-rows:before {
     content: counter(itemcounter)
 }
 .code-pre-line {
-    padding-left: 44px !important
+    padding-left: 32px !important
 }
 .code-copay-btn {
     position: absolute;
