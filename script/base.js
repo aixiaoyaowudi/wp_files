@@ -168,22 +168,22 @@ function main() {
 				});
 				$('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
 
-				let pre_list = $('code-box pre');
+				let pre_list = $('code-box pre div.mCSB_container');
 
-				// $.each(pre_list, function (i) {
-				// 	let pre = $(pre_list[i]);
-				// 	let code_line = pre.html().replace(/\<br\>/g, '\n').split('\n');
-				// 	let code = [];
+				$.each(pre_list, function (i) {
+					let pre = $(pre_list[i]);
+					let code_line = pre.html().replace(/\<br\>/g, '\n').split('\n');
+					let code = [];
 
-				// 	$.each(code_line, (j) => {
-				// 		if ($.trim(code_line[j]) || j < code_line.length - 1) {
-				// 			code_line[j] !== '</code>' && code.push('<code-line class="line-numbers-rows"></code-line>' + code_line[j]);
-				// 		}
-				// 	});
+					$.each(code_line, (j) => {
+						if ($.trim(code_line[j]) || j < code_line.length - 1) {
+							code_line[j] !== '</code>' && code.push('<code-line class="line-numbers-rows"></code-line>' + code_line[j]);
+						}
+					});
 
-				// 	pre.html(code.join('\n'));
-				// 	pre.addClass('code-pre-line');
-				// });
+					pre.html(code.join('\n'));
+					pre.addClass('code-pre-line');
+				});
 			});
 		});
 	};
