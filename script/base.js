@@ -16,7 +16,8 @@ window.xiaoyaowudi_default_config = {
     mathjax_version : '3.2.0',
     require_verion : '2.3.6',
     clipboard_version : '2.0.6',
-    mCustomScrollbar_version : '3.1.5'
+    mCustomScrollbar_version : '3.1.5',
+    language_prefix : 'language'
 }
 window.xiaoyaowudi_config = $.extend(true, window.xiaoyaowudi_default_config, window.xiaoyaowudi_config);
 
@@ -86,9 +87,10 @@ function main() {
     
                 let pre_code = pre.find('code');
                 if (pre_code.length > 0) {
-                    let code_class = pre_code.attr('class') + ' ';
+                    let code_class = pre_code.attr('class');
                     if (code_class) {
-                        let lan = code_class.match(/.*(language-[a-z0-9]+)\s+.*/);
+                        let reg = new RegExp('.*' + window.xiaoyaowudi_config.language_prefix + '-[a-z0-9]+.*');
+                        let lan = code_class.match(reg);
                         if (!!lan && lan.length > 0) {
                             pre.addClass(lan[1]);
                         }
