@@ -54,16 +54,6 @@ function Tools() {
 
 const tools = new Tools;
 
-//window.Mathjax = {
-//  tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processClass: 'math', processEscapes: true },
-//  TeX: {
-//      equationNumbers: { autoNumber: ['AMS'], useLabelIds: true },
-//      extensions: ['extpfeil.js', 'mediawiki-texvc.js'],
-//      Macros: {bm: "\\boldsymbol"}
-//  },
-//  'HTML-CSS': { linebreaks: { automatic: true } },
-//  SVG: { linebreaks: { automatic: true } }
-//}
 window.MathJax = {
     tex: {
         inlineMath: [['$', '$'], ['\\(', '\\)']]
@@ -72,7 +62,6 @@ window.MathJax = {
         fontCache: 'global'
     }
 };
-tools.add_script('https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js');
 
 function main() {
     this.coding = function () {
@@ -202,39 +191,37 @@ function main() {
 }
 
 const Main = new main;
+require.config({
+    map: {
+        '*': {
+            'css': tools.get_file('lib/css/css.min.js')
+        }
+    },
+    paths: {
+        highlightjs : tools.get_file('lib/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min'),
+        clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
+        mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
+                                         window.xiaoyaowudi_config.mCustomScrollbar_version +
+                                         '/jquery.mCustomScrollbar.min'),
+        MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js'
+    },
+    shim: {
+        clipboard: {
+            deps : ['css!https://at.alicdn.com/t/font_543384_kv876ayucyc.css']
+        },
+        highlightjs: {
+            deps : ['css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')]
+        },
+        mCustomScrollbar: {
+            deps : ['css!' + tools.get_file('lib/mCustomScrollbar/' +
+                                            window.xiaoyaowudi_config.mCustomScrollbar_version +
+                                            '/jquery.mCustomScrollbar.min.css')]
+        }
+    }
+});
 
 function load() {
-    $.getScript(tools.get_file('lib/require/' + window.xiaoyaowudi_config.require_verion) + '/require.min.js', function () {
-        require.config({
-            map: {
-                '*': {
-                    'css': tools.get_file('lib/css/css.min.js')
-                }
-            },
-            paths: {
-                highlightjs : tools.get_file('lib/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min'),
-                clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
-                mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
-                                                 window.xiaoyaowudi_config.mCustomScrollbar_version +
-                                                 '/jquery.mCustomScrollbar.min'),
-                MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js'
-            },
-            shim: {
-                clipboard: {
-                    deps : ['css!https://at.alicdn.com/t/font_543384_kv876ayucyc.css']
-                },
-                highlightjs: {
-                    deps : ['css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')]
-                },
-                mCustomScrollbar: {
-                    deps : ['css!' + tools.get_file('lib/mCustomScrollbar/' +
-                                                    window.xiaoyaowudi_config.mCustomScrollbar_version +
-                                                    '/jquery.mCustomScrollbar.min.css')]
-                }
-            }
-        });
-    });
-    Main.main;
+    Main.main();
 }
 
 $(document).ready(load);
