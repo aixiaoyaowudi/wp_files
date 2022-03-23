@@ -200,8 +200,8 @@ require.config({
     paths: {
         // highlightjs : tools.get_file('lib/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min'),
         highlightjs : 'https://cdn.bootcdn.net/ajax/libs/highlight.js/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min',
-        // clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
-        clipboard : 'https://cdn.bootcdn.net/ajax/libs/clipboard.js/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min',
+        clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
+        // clipboard : 'https://cdn.bootcdn.net/ajax/libs/clipboard.js/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min',
         mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
                                          window.xiaoyaowudi_config.mCustomScrollbar_version +
                                          '/jquery.mCustomScrollbar.min'),
