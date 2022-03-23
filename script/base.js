@@ -111,7 +111,7 @@ function main() {
             $('code-box pre').css('font-family', window.xiaoyaowudi_config.code.font_family)
         })();
 
-        require(['clipboard'], function() {
+        require(['clipboard', 'highlightjs', 'mCustomScrollbar'], function() {
 
             let code_box = $('code-box');
             $.each(code_box, function (i) {
@@ -144,62 +144,64 @@ function main() {
     
             new ClipboardJS('.clipboard');
 
-            require(['highlightjs'], function() {
-                let code  = $('code-box pre');
-                let bg_flg = $.inArray(window.xiaoyaowudi_config.code.highlightjs_theme, [
-                    'github-gist', 'googlecode', 'grayscale',
-                    'idea', 'isbl-editor-light', 'qtcreator_light',
-                    'tomorrow', 'vs', 'xcode', 'arduino-light',
-                    'ascetic', 'color-brewer', 'lightfair'
-                ]) !== -1;
+            let code  = $('code-box pre');
+            let bg_flg = $.inArray(window.xiaoyaowudi_config.code.highlightjs_theme, [
+                'github-gist', 'googlecode', 'grayscale',
+                'idea', 'isbl-editor-light', 'qtcreator_light',
+                'tomorrow', 'vs', 'xcode', 'arduino-light',
+                'ascetic', 'color-brewer', 'lightfair'
+            ]) !== -1;
 
-                $.each(code, function (i, e) {
-                    let obj = $(code[i]);
+            $.each(code, function (i, e) {
+                let obj = $(code[i]);
 
-                    obj.html().replace(/\<br\>/g, '\n');
+                obj.html().replace(/\<br\>/g, '\n');
 
-                    obj.text(obj.text());
+                obj.text(obj.text());
 
-                    bg_flg && obj.css('background', '#f5f5fa');
+                bg_flg && obj.css('background', '#f5f5fa');
 
-                    hljs.highlightElement(e);
+                hljs.highlightElement(e);
 
-                    $('.clipboard[boxid='+ obj.attr('boxid') +']').addClass('hljs-comment');
+                $('.clipboard[boxid='+ obj.attr('boxid') +']').addClass('hljs-comment');
+            });
+
+            $('code-box pre').mCustomScrollbar({
+                theme:"minimal-dark",
+                axis:"yx"
+            });
+            $('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
+
+            let pre_list = $('code-box pre div.mCSB_container');
+
+            $.each(pre_list, function (i) {
+                let pre = $(pre_list[i]);
+                let code_line = pre.html().replace(/\<br\>/g, '\n').split('\n');
+                let code = [];
+
+                $.each(code_line, (j) => {
+                    if ($.trim(code_line[j]) || j < code_line.length - 1) {
+                        code_line[j] !== '</code>' && code.push('<code-line class="line-numbers-rows"></code-line>' + code_line[j]);
+                    }
                 });
 
-                $('code-box pre').mCustomScrollbar({
-                    theme:"minimal-dark",
-                    axis:"yx"
-                });
-                $('.mCSB_dragger_bar').css('background-color', $('.hljs-comment').css('color'));
-
-                let pre_list = $('code-box pre div.mCSB_container');
-
-                $.each(pre_list, function (i) {
-                    let pre = $(pre_list[i]);
-                    let code_line = pre.html().replace(/\<br\>/g, '\n').split('\n');
-                    let code = [];
-
-                    $.each(code_line, (j) => {
-                        if ($.trim(code_line[j]) || j < code_line.length - 1) {
-                            code_line[j] !== '</code>' && code.push('<code-line class="line-numbers-rows"></code-line>' + code_line[j]);
-                        }
-                    });
-
-                    pre.html('<code-pre class=\'code-pre code-pre-line\'>' + code.join('\n') + '</code-pre>');
-                    // pre.addClass('code-pre-line');
-                });
+                pre.html('<code-pre class=\'code-pre code-pre-line\'>' + code.join('\n') + '</code-pre>');
+                // pre.addClass('code-pre-line');
             });
         });
     };
     this.math = function() {
-        MathJax.typeset();
+        require(['MathJax'], function() {
+            MathJax.typeset();
+        });
     }
     this.main = function() {
         this.coding();
         this.math();
     }
 }
+
+const Main = new main;
 
 function load() {
     $.getScript(tools.get_file('lib/require/' + window.xiaoyaowudi_config.require_verion) + '/require.min.js', function () {
@@ -214,12 +216,12 @@ function load() {
                 clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
                 mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
                                                  window.xiaoyaowudi_config.mCustomScrollbar_version +
-                                                 '/jquery.mCustomScrollbar.min')
+                                                 '/jquery.mCustomScrollbar.min'),
+                MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js'
             },
             shim: {
                 clipboard: {
-                    deps : ['css!https://at.alicdn.com/t/font_543384_kv876ayucyc.css',
-                            'css!' + tools.get_file('lib/google-fonts/google-fonts.min.css')]
+                    deps : ['css!https://at.alicdn.com/t/font_543384_kv876ayucyc.css']
                 },
                 highlightjs: {
                     deps : ['css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')]
@@ -231,10 +233,8 @@ function load() {
                 }
             }
         });
-        require(['mCustomScrollbar'], () => {
-            (new main).main();
-        });
     });
+    Main.main;
 }
 
 $(document).ready(load);
