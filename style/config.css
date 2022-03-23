@@ -17,10 +17,10 @@ button {
     background: #5ba4e5
 }
 pre {
-    padding: 10px;
+    padding: 10px 10px 10px 5px;
     white-space: pre;
     margin: 0;
-    border-radius: 0 0 4px 4px !important;
+    border-radius: 8px 8px 8px 8px !important;
     border: 0 !important;
     word-break: break-all;
     word-wrap: break-word;
@@ -29,7 +29,7 @@ pre {
 pre .line-numbers-rows {
     counter-increment: itemcounter;
     position: absolute;
-    left: 1px;
+    left: -30px;
     width: 30px;
     text-align: center;
     color: #999;
@@ -94,10 +94,11 @@ code-box .code-tools:after {
 }
 
 pre .line-numbers-rows:before {
-    content: counter(itemcounter)
+    content: counter(itemcounter);
 }
 .code-pre-line {
-    padding-left: 32px !important
+    padding-left: 10px !important;
+    left: 32px !important;
 }
 .code-copay-btn {
     position: absolute;

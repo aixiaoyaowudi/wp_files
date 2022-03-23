@@ -186,8 +186,8 @@ function main() {
                         }
                     });
 
-                    pre.html(code.join('\n'));
-                    pre.addClass('code-pre-line');
+                    pre.html('<code-pre class=\'code-pre code-pre-line\'>' + code.join('\n') + '</code-pre>');
+                    // pre.addClass('code-pre-line');
                 });
             });
         });
