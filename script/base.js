@@ -215,7 +215,7 @@ require.config({
         highlightjs: {
             deps : [
                     // 'css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')
-                    'css!' + 'https://cdn.bootcdn.net/ajax/libs/highlight.js/' + window.xiaoyaowudi_config.code.highlightjs_version + '/styles' + window.xiaoyaowudi_config.code.highlightjs_theme + '/highlight.min.css'
+                    'css!' + 'https://cdn.bootcdn.net/ajax/libs/highlight.js/' + window.xiaoyaowudi_config.code.highlightjs_version + '/styles/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css'
                    ]
         },
         mCustomScrollbar: {
