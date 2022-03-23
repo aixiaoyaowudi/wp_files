@@ -203,7 +203,7 @@ require.config({
         mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
                                          window.xiaoyaowudi_config.mCustomScrollbar_version +
                                          '/jquery.mCustomScrollbar.min'),
-        MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.js'
+        MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml'
     },
     shim: {
         clipboard: {
