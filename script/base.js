@@ -198,19 +198,25 @@ require.config({
         }
     },
     paths: {
-        highlightjs : tools.get_file('lib/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min'),
-        clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
+        // highlightjs : tools.get_file('lib/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min'),
+        highlightjs : 'https://cdn.bootcdn.net/ajax/libs/highlight.js/' + window.xiaoyaowudi_config.code.highlightjs_version + '/highlight.min',
+        // clipboard : tools.get_file('lib/clipboard/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min'),
+        clipboard : 'https://cdn.bootcdn.net/ajax/libs/clipboard.js/' + window.xiaoyaowudi_config.clipboard_version + '/clipboard.min',
         mCustomScrollbar: tools.get_file('lib/mCustomScrollbar/' +
                                          window.xiaoyaowudi_config.mCustomScrollbar_version +
                                          '/jquery.mCustomScrollbar.min'),
-        MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml'
+        // MathJax : 'https://cdn.jsdelivr.net/npm/mathjax@' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml'
+        MathJax : 'https://cdn.bootcdn.net/ajax/libs/mathjax/' + window.xiaoyaowudi_config.mathjax_version + '/es5/tex-mml-chtml.min'
     },
     shim: {
         clipboard: {
             deps : ['css!https://at.alicdn.com/t/font_543384_kv876ayucyc.css']
         },
         highlightjs: {
-            deps : ['css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')]
+            deps : [
+                    // 'css!' + tools.get_file('style/highlightjs/' + window.xiaoyaowudi_config.code.highlightjs_theme + '.min.css')
+                    'css!' + 'https://cdn.bootcdn.net/ajax/libs/highlight.js/' + window.xiaoyaowudi_config.code.highlightjs_version + '/styles/highlight.min'
+                   ]
         },
         mCustomScrollbar: {
             deps : ['css!' + tools.get_file('lib/mCustomScrollbar/' +
