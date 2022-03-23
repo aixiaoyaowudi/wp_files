@@ -14,7 +14,7 @@ button {
     text-shadow: none;
     border-radius: .3rem;
     border: .1em solid rgba(0, 0, 0, .05);
-    background: #5ba4e5
+    background: #5ba4e5;
 }
 pre {
     padding: 10px 10px 10px 5px;
@@ -97,8 +97,9 @@ pre .line-numbers-rows:before {
     content: counter(itemcounter);
 }
 .code-pre-line {
-    padding-left: 10px !important;
-    left: 32px !important;
+    border-left: 1px solid #999;
+    padding-left: 8px !important;
+    left: 30px !important;
 }
 .code-copay-btn {
     position: absolute;
